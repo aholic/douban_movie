@@ -10,6 +10,6 @@ BOT_NAME = 'douban_movie'
 
 SPIDER_MODULES = ['douban_movie.spiders']
 NEWSPIDER_MODULE = 'douban_movie.spiders'
-
+ITEM_PIPELINES = ['douban_movie.pipelines.DoubanMoviePipeline']
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'douban_movie (+http://www.yourdomain.com)'

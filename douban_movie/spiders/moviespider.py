@@ -25,7 +25,7 @@ class MovieSpider(BaseSpider):
         movie = DoubanMovieItem()
         movie['url_in_douban'] = unicode(response.url)
         movie['name_in_douban'] = "".join(hxs.select("//span[@property='v:itemreviewed']/text()").extract()).strip()
-        movie['year'] = int(("".join(hxs.select("//span[@class='year']/text()").extract()).strip())[1:-1])
+        movie['year'] = ("".join(hxs.select("//span[@class='year']/text()").extract()).strip())[1:-1]
         movie['length'] = "".join(hxs.select("//span[@property='v:runtime']/@content").extract()).strip()
         movie['url_in_imdb'] = "".join(hxs.select("//div[@id='info']/a[last()]/@href").extract()).strip()
         movie['score'] = "".join(hxs.select("//strong[@class='ll rating_num'][@property='v:average']/text()").extract()).strip()
@@ -36,6 +36,6 @@ class MovieSpider(BaseSpider):
         tag_num = len(tag_names)
         tags = dict()
         for i in range(tag_num):
-            tags[tag_names[i]] = int(tag_times[i][1:-1])
+            tags[tag_names[i]] = tag_times[i][1:-1]
         movie['tags'] = tags
         return [movie]
